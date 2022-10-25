@@ -33,4 +33,4 @@ class EscolaDB():
 
     def delete(self, professor):
         return self.db.execute_query('MATCH (n:Professor {nome:$nome}) DELETE n',
-                                     {'name': professor['nome']})
+                                     {'nome': professor['nome']})
