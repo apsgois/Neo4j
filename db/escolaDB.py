@@ -26,3 +26,11 @@ class EscolaDB():
         return self.db.execute_query(
             'MATCH (n:Professor {nome:$nome}), (m:Materia {assunto:$assunto}) CREATE (n)-[r:DA_AULA{ano: $ano}]->(m) RETURN n, r, m',
             {'nome': professor1['nome'], 'assunto': materia1['assunto'], 'ano': ano})
+
+    def update_professor(self, materia):
+        return self.db.execute_query('MATCH (n:Materia {assunto:$assunto}) SET n.horario = $horario RETURN n',
+                                     {'name': materia['nome'], 'horario': materia['horario']})
+
+    def delete(self, professor):
+        return self.db.execute_query('MATCH (n:Professor {nome:$nome}) DELETE n',
+                                     {'name': professor['nome']})

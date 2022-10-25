@@ -5,7 +5,7 @@ from db.escolaDB import EscolaDB
 dao = EscolaDB()
 
 while 1:
-    option = input('1. Criar professor \n2. Criar materia\n3. Ler todos os nos \n4. Criar relacionamento\n')
+    option = input('1. Criar professor \n2. Criar materia\n3. Ler todos os nos \n4. Criar relacionamento\n5. Atualizar professor\n6. Ler professor\n')
 
     if option == '1':
         nome = input('  Nome: ')
@@ -38,6 +38,24 @@ while 1:
         professor1 = { 'nome': professor }
         materia1 = { 'assunto': materia }
         aux = dao.create_relation(professor1, materia1, ano)
+    elif option == '5':
+        assunto = input('  Assunto: ')
+        horario = input('   Horario : ')
+
+        materia = {
+            'assunto': assunto,
+            'horario': horario
+        }
+        aux = dao.update_professor(materia)
+
+    elif option == '5':
+        nome = input('  Nome: ')
+        professor = {
+            'nome': nome
+        }
+
+        aux = dao.delete(professor)
+        pp(aux)
 
     else:
         break
